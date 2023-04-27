@@ -1,11 +1,11 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+
+import { Header } from '../Header/Header';
+import { Wrapper } from './Layout.styled';
 
 export const Layout = () => (
-  <>
-    <header>
-      <NavLink to={'/'}>Поиск вакансий</NavLink>
-      <NavLink to={'/selected-jobs'}>Избранные</NavLink>
-    </header>
+  <Wrapper>
+    <Header />
     <Outlet />
-  </>
+  </Wrapper>
 );

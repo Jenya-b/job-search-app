@@ -2,10 +2,11 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { JobSearch, SelectedJobs } from 'modules/pages';
 import { Layout } from 'modules/components/Layout/Layout';
+import { path } from './path';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: path.home,
     element: <Layout />,
     children: [
       {
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
         element: <JobSearch />,
       },
       {
-        path: '/selected-jobs',
+        path: path.selectedJobs,
         element: <SelectedJobs />,
       },
     ],
