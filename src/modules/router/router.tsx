@@ -1,13 +1,18 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { JobSearch, SelectedJobs } from 'modules/pages';
+import { JobSearch, SelectedJobs, Signin } from 'modules/pages';
 import { Layout } from 'modules/components/Layout/Layout';
 import { path } from './path';
+import { RequireAuth } from 'hocs/RequireAuth';
 
 export const router = createBrowserRouter([
   {
     path: path.home,
-    element: <Layout />,
+    element: (
+      <RequireAuth>
+        <Layout />
+      </RequireAuth>
+    ),
     children: [
       {
         index: true,
@@ -18,5 +23,9 @@ export const router = createBrowserRouter([
         element: <SelectedJobs />,
       },
     ],
+  },
+  {
+    path: path.signin,
+    element: <Signin />,
   },
 ]);
