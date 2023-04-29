@@ -6,3 +6,32 @@ export interface AuthResponse {
   token_type: string;
   ttl: number;
 }
+
+interface ICatalogues {
+  id: number;
+  key: number;
+  positions: [];
+  title: string;
+}
+export interface IVacancies {
+  profession: string;
+  firm_name: string;
+  town: {
+    title: string;
+  };
+  catalogues: ICatalogues[];
+  type_of_work: {
+    title: string;
+  };
+  payment_to: number;
+  payment_from: number;
+  currency: string;
+}
+
+export interface VacanciesResponse {
+  more: true;
+  objects: IVacancies[];
+  subscription_active: false;
+  subscription_id: 0;
+  total: 341934;
+}

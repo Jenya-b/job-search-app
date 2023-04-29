@@ -14,6 +14,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 
 import { authApi } from 'services/api/authApi';
+import { vacanciesApi } from 'services/api/vacanciesApi';
 import authReducer from 'store/reducers/authSlice';
 
 const persistConfig = {
@@ -26,6 +27,7 @@ const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
+    [vacanciesApi.reducerPath]: vacanciesApi.reducer,
     persistedAuthReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -33,7 +35,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(authApi.middleware),
+    }).concat(authApi.middleware, vacanciesApi.middleware),
 });
 
 export const persistor = persistStore(store);
