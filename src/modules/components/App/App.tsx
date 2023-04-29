@@ -7,12 +7,13 @@ import { theme } from 'styles/theme';
 import GlobalStyles from 'styles/global';
 import { router } from 'modules/router/router';
 import { store } from 'store';
+import { Loader } from '../Loader/Loader';
 
 export const App = () => (
   <StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <Suspense fallback={<div>loading..</div>}>
+        <Suspense fallback={<Loader />}>
           <RouterProvider router={router} />
         </Suspense>
         <GlobalStyles />
