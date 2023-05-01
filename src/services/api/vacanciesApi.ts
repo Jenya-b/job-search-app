@@ -16,11 +16,12 @@ export const vacanciesApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getVacancies: builder.query<VacanciesResponse[], null>({
+    getVacancies: builder.query<VacanciesResponse, null>({
       query: () => ({
         url: '/2.0/vacancies',
         headers: {
           'X-Api-App-Id': process.env.REACT_APP_CLIENT_SECRET,
+          'x-secret-key': process.env.REACT_APP_X_SECRET_KEY,
         },
       }),
     }),
