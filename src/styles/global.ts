@@ -81,7 +81,7 @@ export default createGlobalStyle`
 		font-weight: 400;
 	}
 	#root{
-		height: 100%;
+		min-height: 100vh;
 		background: #F7F7F8;
 	}
 `;

@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
-import { VacanciesResponse } from 'interfaces/api';
 import { RootState } from 'store';
+import { countObjectsOnPage } from 'constants/pagination';
+import type { VacanciesResponse } from 'interfaces/api';
 
 export const vacanciesApi = createApi({
   reducerPath: 'vacanciesApi',
@@ -16,12 +17,17 @@ export const vacanciesApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getVacancies: builder.query<VacanciesResponse, null>({
-      query: () => ({
+    getVacancies: builder.query<VacanciesResponse, { page: number }>({
+      query: ({ page }) => ({
         url: '/2.0/vacancies',
         headers: {
           'X-Api-App-Id': process.env.REACT_APP_CLIENT_SECRET,
           'x-secret-key': process.env.REACT_APP_X_SECRET_KEY,
+        },
+        params: {
+          published: 1,
+          count: countObjectsOnPage,
+          page,
         },
       }),
     }),
