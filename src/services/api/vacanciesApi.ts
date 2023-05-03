@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 import { RootState } from 'store';
 import { countObjectsOnPage } from 'constants/pagination';
-import type { VacanciesResponse } from 'interfaces/api';
+import type { CataloguesResponse, VacanciesResponse } from 'interfaces/api';
 
 export const vacanciesApi = createApi({
   reducerPath: 'vacanciesApi',
@@ -17,8 +17,16 @@ export const vacanciesApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getVacancies: builder.query<VacanciesResponse, { page: number }>({
-      query: ({ page }) => ({
+    getVacancies: builder.query<
+      VacanciesResponse,
+      {
+        page: number;
+        catalogues: string | null;
+        payment_from: number | '' | undefined;
+        payment_to: number | '' | undefined;
+      }
+    >({
+      query: ({ page, catalogues, payment_from, payment_to }) => ({
         url: '/2.0/vacancies',
         headers: {
           'X-Api-App-Id': process.env.REACT_APP_CLIENT_SECRET,
@@ -26,8 +34,20 @@ export const vacanciesApi = createApi({
         },
         params: {
           published: 1,
+          payment_from,
+          payment_to,
+          catalogues,
           count: countObjectsOnPage,
           page,
+        },
+      }),
+    }),
+    getCatalogues: builder.query<CataloguesResponse[], null>({
+      query: () => ({
+        url: '/2.0/catalogues',
+        headers: {
+          'X-Api-App-Id': process.env.REACT_APP_CLIENT_SECRET,
+          'x-secret-key': process.env.REACT_APP_X_SECRET_KEY,
         },
       }),
     }),

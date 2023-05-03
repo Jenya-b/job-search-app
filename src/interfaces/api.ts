@@ -35,3 +35,8 @@ export interface VacanciesResponse {
   subscription_id: 0;
   total: 341934;
 }
+
+export interface CataloguesResponse {
+  title_rus: string;
+  key: number;
+}

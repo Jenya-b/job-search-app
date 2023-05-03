@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, FormEvent, useEffect, useState } from 'react';
 
 import {
   Wrapper,
@@ -10,27 +10,51 @@ import {
   StyledSelect,
   ParamsWrapp,
 } from './Filters.styled';
+import type { ISelectFilter } from 'interfaces/filters';
+import type { CataloguesResponse } from 'interfaces/api';
 
 interface FiltersProps {
-  dataSelect: string[];
+  catalogues: CataloguesResponse[] | undefined;
+  activeSelector: string | null;
+  setActiveSelector: Dispatch<React.SetStateAction<string | null>>;
+  applyFilters: (event: FormEvent<HTMLFormElement>) => void;
+  minSalary: number | '' | undefined;
+  setMinSalary: Dispatch<React.SetStateAction<number | '' | undefined>>;
+  maxSalary: number | '' | undefined;
+  setMaxSalary: Dispatch<React.SetStateAction<number | '' | undefined>>;
 }
 
-export const Filters = ({ dataSelect }: FiltersProps) => {
-  const [minSalary, setMinSalary] = useState<number | ''>();
-  const [maxSalary, setMaxSalary] = useState<number | ''>();
-  const [valueSelect, setValueSelect] = useState<string | null>(null);
+export const Filters = ({
+  catalogues,
+  activeSelector,
+  setActiveSelector,
+  applyFilters,
+  minSalary,
+  setMinSalary,
+  maxSalary,
+  setMaxSalary,
+}: FiltersProps) => {
+  const [dataSelect, setDataSelect] = useState<ISelectFilter[]>([]);
+
+  useEffect(() => {
+    if (catalogues) {
+      setDataSelect(
+        catalogues.map(({ key, title_rus }) => ({ value: String(key), label: title_rus }))
+      );
+    }
+  }, [catalogues]);
 
   return (
     <div>
       <Wrapper>
         <Title>Фильтры</Title>
-        <Form>
+        <Form onSubmit={applyFilters}>
           <ParamsWrapp>
             <Subtitle>Отрасль</Subtitle>
             <StyledSelect
               placeholder="Выберете отрасль"
-              value={valueSelect}
-              onChange={setValueSelect}
+              value={activeSelector}
+              onChange={setActiveSelector}
               data={dataSelect}
             />
           </ParamsWrapp>

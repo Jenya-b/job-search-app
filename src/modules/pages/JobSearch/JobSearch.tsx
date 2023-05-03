@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
-import { useGetVacanciesQuery } from 'services';
+import { useGetCataloguesQuery, useLazyGetVacanciesQuery } from 'services';
 import { Main } from 'styles/components';
 import { Container, Content, StyledPagination, listStyles } from './jobSearch.styled';
 import { Loader } from 'modules/components/Loader/Loader';
@@ -11,16 +11,30 @@ import { countObjectsOnPage } from 'constants/pagination';
 import type { IVacancies } from 'interfaces/api';
 
 export const JobSearch = () => {
-  const [dataSelect, setDataSelect] = useState<string[]>([]);
+  const [activeSelector, setActiveSelector] = useState<string | null>(null);
+  const [minSalary, setMinSalary] = useState<number | ''>();
+  const [maxSalary, setMaxSalary] = useState<number | ''>();
   const [activePage, setPage] = useState(1);
-  const { data, isLoading, isFetching } = useGetVacanciesQuery({ page: activePage - 1 });
+  const [fetchGetVacancies, { data, isLoading, isFetching }] = useLazyGetVacanciesQuery();
+  const { data: catalogues, isLoading: isLoadingCatalogues } = useGetCataloguesQuery(null);
 
   useEffect(() => {
-    if (data && data.objects) {
-      const categories = data.objects.map(({ catalogues }) => catalogues[0].title);
-      setDataSelect([...new Set(categories)]);
-    }
-  }, [data]);
+    getVacancies();
+  }, []);
+
+  const getVacancies = () => {
+    fetchGetVacancies({
+      page: activePage - 1,
+      catalogues: activeSelector,
+      payment_from: minSalary,
+      payment_to: maxSalary,
+    });
+  };
+
+  const applyFilters = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    getVacancies();
+  };
 
   const renderItem = ({ profession, town, type_of_work, currency, payment_from }: IVacancies) => (
     <CardVacancy
@@ -34,10 +48,19 @@ export const JobSearch = () => {
 
   return (
     <>
-      {(isLoading || isFetching) && <Loader />}
+      {(isLoading || isFetching || isLoadingCatalogues) && <Loader />}
       <Main>
         <Container>
-          <Filters dataSelect={dataSelect} />
+          <Filters
+            catalogues={catalogues}
+            activeSelector={activeSelector}
+            setActiveSelector={setActiveSelector}
+            applyFilters={applyFilters}
+            minSalary={minSalary}
+            maxSalary={maxSalary}
+            setMinSalary={setMinSalary}
+            setMaxSalary={setMaxSalary}
+          />
           <Content>
             {data && (
               <>
