@@ -36,10 +36,18 @@ export const JobSearch = () => {
     getVacancies();
   };
 
-  const renderItem = ({ profession, town, type_of_work, currency, payment_from }: IVacancies) => (
+  const renderItem = ({
+    profession,
+    town,
+    type_of_work,
+    currency,
+    payment_from,
+    payment_to,
+  }: IVacancies) => (
     <CardVacancy
       title={profession}
-      salary={payment_from}
+      paymentFrom={payment_from}
+      paymentTo={payment_to}
       address={town.title}
       type={type_of_work.title}
       currency={currency}
