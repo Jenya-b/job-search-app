@@ -1,7 +1,9 @@
-import { mapIcon } from 'constants/images';
 import styled from 'styled-components';
 
+import { mapIcon, starActiveIcon, starIcon } from 'constants/images';
+
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 12px;
@@ -60,4 +62,17 @@ export const InfoAddress = styled.div`
     background: url(${mapIcon}) no-repeat;
     left: 3px;
   }
+`;
+
+interface StarProps {
+  isFavorite: boolean;
+}
+
+export const Star = styled.div<StarProps>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  background: url(${({ isFavorite }) => (isFavorite ? starActiveIcon : starIcon)}) no-repeat;
 `;

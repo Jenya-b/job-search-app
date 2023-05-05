@@ -9,12 +9,17 @@ import { List } from 'modules/components/List/List';
 import { CardVacancy } from 'modules/components/CardVacancy/CardVacancy';
 import { countObjectsOnPage } from 'constants/pagination';
 import type { IVacancies } from 'interfaces/api';
+import { useAppDispatch, useAppSelector } from 'store';
+import { vacancySelector } from 'store/selectors';
+import { updateFavoriteId } from 'store/reducers/vacancySlice';
 
 export const JobSearch = () => {
   const [activeSelector, setActiveSelector] = useState<string | null>(null);
   const [minSalary, setMinSalary] = useState<number | ''>();
   const [maxSalary, setMaxSalary] = useState<number | ''>();
   const [activePage, setPage] = useState(1);
+  const dispatch = useAppDispatch();
+  const { favoriteIds } = useAppSelector(vacancySelector);
   const [fetchGetVacancies, { data, isLoading, isFetching }] = useLazyGetVacanciesQuery();
   const { data: catalogues, isLoading: isLoadingCatalogues } = useGetCataloguesQuery(null);
 
@@ -43,16 +48,27 @@ export const JobSearch = () => {
     currency,
     payment_from,
     payment_to,
-  }: IVacancies) => (
-    <CardVacancy
-      title={profession}
-      paymentFrom={payment_from}
-      paymentTo={payment_to}
-      address={town.title}
-      type={type_of_work.title}
-      currency={currency}
-    />
-  );
+    id,
+  }: IVacancies) => {
+    const addFavorites = () => {
+      favoriteIds.includes(id)
+        ? dispatch(updateFavoriteId(favoriteIds.filter((item) => item != id)))
+        : dispatch(updateFavoriteId([id, ...favoriteIds]));
+    };
+
+    return (
+      <CardVacancy
+        title={profession}
+        paymentFrom={payment_from}
+        paymentTo={payment_to}
+        address={town.title}
+        type={type_of_work.title}
+        currency={currency}
+        addFavorites={addFavorites}
+        isFavorite={favoriteIds.includes(id)}
+      />
+    );
+  };
 
   return (
     <>

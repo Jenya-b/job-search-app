@@ -9,7 +9,7 @@ export const vacanciesApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.REACT_APP_API_URL,
     prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).persistedAuthReducer.accessToken;
+      const token = (getState() as RootState).persistedReducer.auth.accessToken;
 
       if (token) {
         headers.set('authorization', `Bearer ${token}`);

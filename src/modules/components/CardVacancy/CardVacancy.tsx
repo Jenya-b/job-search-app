@@ -1,5 +1,13 @@
 import { getPayments } from 'utils/payments';
-import { Wrapper, Descriptions, InfoAddress, Payment, Title, TypeWork } from './CardVacancy.styled';
+import {
+  Wrapper,
+  Descriptions,
+  InfoAddress,
+  Payment,
+  Title,
+  TypeWork,
+  Star,
+} from './CardVacancy.styled';
 
 interface CardVacancyProps {
   title: string;
@@ -8,6 +16,8 @@ interface CardVacancyProps {
   type: string;
   address: string;
   currency: string;
+  addFavorites: () => void;
+  isFavorite: boolean;
 }
 
 export const CardVacancy = ({
@@ -17,6 +27,8 @@ export const CardVacancy = ({
   type,
   address,
   currency,
+  addFavorites,
+  isFavorite,
 }: CardVacancyProps) => {
   return (
     <Wrapper>
@@ -26,6 +38,7 @@ export const CardVacancy = ({
         <TypeWork>{type}</TypeWork>
       </Descriptions>
       <InfoAddress>{address}</InfoAddress>
+      <Star isFavorite={isFavorite} onClick={addFavorites} />
     </Wrapper>
   );
 };

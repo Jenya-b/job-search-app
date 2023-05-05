@@ -1,3 +1,4 @@
 import { RootState } from 'store';
 
-export const authSelector = (state: RootState) => state.persistedAuthReducer;
+export const authSelector = (state: RootState) => state.persistedReducer.auth;
+export const vacancySelector = (state: RootState) => state.persistedReducer.vacancy;
