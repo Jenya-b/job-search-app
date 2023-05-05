@@ -2,16 +2,16 @@ import { FormEvent, useEffect, useState } from 'react';
 
 import { useGetCataloguesQuery, useLazyGetVacanciesQuery } from 'services';
 import { Main } from 'styles/components';
-import { Container, Content, StyledPagination, listStyles } from './jobSearch.styled';
+import { Container, listStyles } from './jobSearch.styled';
 import { Loader } from 'modules/components/Loader/Loader';
 import { Filters } from 'modules/components/Filters/Filters';
-import { List } from 'modules/components/List/List';
 import { CardVacancy } from 'modules/components/CardVacancy/CardVacancy';
 import { countObjectsOnPage } from 'constants/pagination';
-import type { IVacancies } from 'interfaces/api';
 import { useAppDispatch, useAppSelector } from 'store';
 import { vacancySelector } from 'store/selectors';
 import { updateFavoriteId } from 'store/reducers/vacancySlice';
+import { VacanciesList } from 'modules/components/VacanciesList/VacanciesList';
+import type { IVacancies } from 'interfaces/api';
 
 export const JobSearch = () => {
   const [activeSelector, setActiveSelector] = useState<string | null>(null);
@@ -25,7 +25,7 @@ export const JobSearch = () => {
 
   useEffect(() => {
     getVacancies();
-  }, []);
+  }, [activePage, activeSelector, minSalary, maxSalary]);
 
   const getVacancies = () => {
     fetchGetVacancies({
@@ -85,23 +85,15 @@ export const JobSearch = () => {
             setMinSalary={setMinSalary}
             setMaxSalary={setMaxSalary}
           />
-          <Content>
-            {data && (
-              <>
-                <List
-                  data={data.objects}
-                  renderItem={renderItem}
-                  renderEmpty={<></>}
-                  styles={listStyles}
-                />
-                <StyledPagination
-                  total={Math.ceil(data.total / countObjectsOnPage)}
-                  value={activePage}
-                  onChange={setPage}
-                />
-              </>
-            )}
-          </Content>
+          <VacanciesList
+            data={data}
+            renderItem={renderItem}
+            renderEmpty={<></>}
+            countObjectsOnPage={countObjectsOnPage}
+            activePage={activePage}
+            setPage={setPage}
+            listStyles={listStyles}
+          />
         </Container>
       </Main>
     </>
