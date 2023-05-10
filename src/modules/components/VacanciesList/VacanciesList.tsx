@@ -1,7 +1,8 @@
+import type { FlattenSimpleInterpolation } from 'styled-components';
+
 import { List } from '../List/List';
 import { Pagination } from '../Pagination/Pagination';
 import type { IVacancies, VacanciesResponse } from 'interfaces/api';
-import type { FlattenSimpleInterpolation } from 'styled-components';
 
 interface VacanciesListProps {
   data: VacanciesResponse | undefined;
