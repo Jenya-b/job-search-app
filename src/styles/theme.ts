@@ -16,4 +16,5 @@ export const theme: ITheme = {
     container: { width: '1fr minmax(auto, 1116px) 1fr' },
     header: { height: 84 },
   },
+  cursor: 'pointer',
 };

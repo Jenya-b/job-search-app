@@ -14,6 +14,7 @@ export const Title = styled.h2`
   font-size: 20px;
   line-height: 24px;
   color: ${({ theme }) => theme.colors.textPrimary};
+  cursor: ${({ theme }) => theme.cursor};
 `;
 
 export const Descriptions = styled.div`
@@ -75,4 +76,5 @@ export const Star = styled.div<StarProps>`
   width: 22px;
   height: 22px;
   background: url(${({ isFavorite }) => (isFavorite ? starActiveIcon : starIcon)}) no-repeat;
+  cursor: ${({ theme }) => theme.cursor};
 `;
