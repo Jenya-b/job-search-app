@@ -1,23 +1,25 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { IVacancies } from 'interfaces/api';
+
 interface InitialStateType {
-  favoriteIds: number[];
+  favoritesVacancy: IVacancies[];
 }
 
 const initialState: InitialStateType = {
-  favoriteIds: [],
+  favoritesVacancy: [],
 };
 
 export const vacancySlice = createSlice({
   name: 'vacancySlice',
   initialState,
   reducers: {
-    updateFavoriteId: (state, action: PayloadAction<number[]>) => {
-      state.favoriteIds = action.payload;
+    updateFavoritesVacancy: (state, action: PayloadAction<IVacancies[]>) => {
+      state.favoritesVacancy = action.payload;
     },
   },
 });
 
-export const { updateFavoriteId } = vacancySlice.actions;
+export const { updateFavoritesVacancy } = vacancySlice.actions;
 
 export default vacancySlice.reducer;

@@ -9,7 +9,7 @@ import { CardVacancy } from 'modules/components/CardVacancy/CardVacancy';
 import { countObjectsOnPage } from 'constants/pagination';
 import { useAppDispatch, useAppSelector } from 'store';
 import { vacancySelector } from 'store/selectors';
-import { updateFavoriteId } from 'store/reducers/vacancySlice';
+import { updateFavoritesVacancy } from 'store/reducers/vacancySlice';
 import { VacanciesList } from 'modules/components/VacanciesList/VacanciesList';
 import type { IVacancies } from 'interfaces/api';
 
@@ -19,7 +19,7 @@ export const JobSearch = () => {
   const [maxSalary, setMaxSalary] = useState<number | ''>();
   const [activePage, setPage] = useState(1);
   const dispatch = useAppDispatch();
-  const { favoriteIds } = useAppSelector(vacancySelector);
+  const { favoritesVacancy } = useAppSelector(vacancySelector);
   const [fetchGetVacancies, { data, isLoading, isFetching }] = useLazyGetVacanciesQuery();
   const { data: catalogues, isLoading: isLoadingCatalogues } = useGetCataloguesQuery(null);
 
@@ -41,31 +41,25 @@ export const JobSearch = () => {
     getVacancies();
   };
 
-  const renderItem = ({
-    profession,
-    town,
-    type_of_work,
-    currency,
-    payment_from,
-    payment_to,
-    id,
-  }: IVacancies) => {
+  const renderItem = (props: IVacancies) => {
+    const isFavorite = favoritesVacancy.map(({ id }) => id).includes(props.id);
+
     const addFavorites = () => {
-      favoriteIds.includes(id)
-        ? dispatch(updateFavoriteId(favoriteIds.filter((item) => item != id)))
-        : dispatch(updateFavoriteId([id, ...favoriteIds]));
+      isFavorite
+        ? dispatch(updateFavoritesVacancy(favoritesVacancy.filter(({ id }) => id != props.id)))
+        : dispatch(updateFavoritesVacancy([props, ...favoritesVacancy]));
     };
 
     return (
       <CardVacancy
-        title={profession}
-        paymentFrom={payment_from}
-        paymentTo={payment_to}
-        address={town.title}
-        type={type_of_work.title}
-        currency={currency}
+        title={props.profession}
+        paymentFrom={props.payment_from}
+        paymentTo={props.payment_to}
+        address={props.town.title}
+        type={props.type_of_work.title}
+        currency={props.currency}
         addFavorites={addFavorites}
-        isFavorite={favoriteIds.includes(id)}
+        isFavorite={isFavorite}
       />
     );
   };
