@@ -24,9 +24,10 @@ export const vacanciesApi = createApi({
         catalogues: string | null;
         payment_from: number | '' | undefined;
         payment_to: number | '' | undefined;
+        keyword: string;
       }
     >({
-      query: ({ page, catalogues, payment_from, payment_to }) => ({
+      query: ({ page, catalogues, payment_from, payment_to, keyword }) => ({
         url: '/2.0/vacancies',
         headers: {
           'X-Api-App-Id': process.env.REACT_APP_CLIENT_SECRET,
@@ -39,6 +40,7 @@ export const vacanciesApi = createApi({
           catalogues,
           count: countObjectsOnPage,
           page,
+          keyword,
         },
       }),
     }),

@@ -5,8 +5,12 @@ import { colors } from 'constants/colors';
 export const Container = styled.div`
   grid-column: 2/3;
   display: grid;
-  grid-template-columns: 315px 1fr;
+  grid-template: auto 1fr / 315px 1fr;
   column-gap: 28px;
+
+  div:first-child {
+    grid-row: 1/3;
+  }
 `;
 
 export const listStyles = css`

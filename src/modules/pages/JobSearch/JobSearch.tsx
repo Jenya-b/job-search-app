@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState, useRef } from 'react';
 
 import { useGetCataloguesQuery, useLazyGetVacanciesQuery } from 'services';
 import { Main } from 'styles/components';
@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from 'store';
 import { vacancySelector } from 'store/selectors';
 import { updateFavoritesVacancy } from 'store/reducers/vacancySlice';
 import { VacanciesList } from 'modules/components/VacanciesList/VacanciesList';
+import { InputSearch } from 'modules/components/InputSearch/InputSearch';
 import type { IVacancies } from 'interfaces/api';
 
 export const JobSearch = () => {
@@ -18,6 +19,8 @@ export const JobSearch = () => {
   const [minSalary, setMinSalary] = useState<number | ''>();
   const [maxSalary, setMaxSalary] = useState<number | ''>();
   const [activePage, setPage] = useState(1);
+  const [searchValue, setSearchValue] = useState('');
+  const searchRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
   const { favoritesVacancy } = useAppSelector(vacancySelector);
   const [fetchGetVacancies, { data, isLoading, isFetching }] = useLazyGetVacanciesQuery();
@@ -25,7 +28,7 @@ export const JobSearch = () => {
 
   useEffect(() => {
     getVacancies();
-  }, [activePage, activeSelector, minSalary, maxSalary]);
+  }, [activePage, activeSelector, minSalary, maxSalary, searchValue]);
 
   const getVacancies = () => {
     fetchGetVacancies({
@@ -33,6 +36,7 @@ export const JobSearch = () => {
       catalogues: activeSelector,
       payment_from: minSalary,
       payment_to: maxSalary,
+      keyword: searchValue,
     });
   };
 
@@ -64,6 +68,11 @@ export const JobSearch = () => {
     );
   };
 
+  const onSearch = () => {
+    if (!searchRef.current) return;
+    setSearchValue(searchRef.current.value);
+  };
+
   return (
     <>
       {(isLoading || isFetching || isLoadingCatalogues) && <Loader />}
@@ -79,6 +88,7 @@ export const JobSearch = () => {
             setMinSalary={setMinSalary}
             setMaxSalary={setMaxSalary}
           />
+          <InputSearch searchRef={searchRef} onSearch={onSearch} />
           <VacanciesList
             data={data}
             renderItem={renderItem}
