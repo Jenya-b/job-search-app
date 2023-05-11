@@ -61,7 +61,7 @@ export const InfoAddress = styled.div`
     width: 20px;
     height: 20px;
     background: url(${mapIcon}) no-repeat;
-    left: 3px;
+    left: 1px;
   }
 `;
 
