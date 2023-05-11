@@ -7,7 +7,7 @@ import { colors } from 'constants/colors';
 export const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.backgroundBase};
   border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 12px;
+  border-radius: ${({ theme }) => theme.borders.block.borderRadius}px;
   padding: 20px;
 `;
 
@@ -38,7 +38,7 @@ export const ParamsWrapp = styled.div`
 
 export const Button = styled.button`
   height: 40px;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.borders.controls.borderRadius}px;
   background: ${({ theme }) => theme.colors.backgroundPrimary};
   color: ${({ theme }) => theme.colors.textTertiary};
   font-weight: 500;
