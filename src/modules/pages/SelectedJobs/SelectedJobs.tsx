@@ -9,6 +9,7 @@ import { Pagination } from 'modules/components/Pagination/Pagination';
 import { countObjectsOnPage } from 'constants/pagination';
 import { updateFavoritesVacancy } from 'store/reducers/vacancySlice';
 import { CardVacancy } from 'modules/components/CardVacancy/CardVacancy';
+import { NotFound } from 'modules/components/NotFound/NotFound';
 import { listStyles } from '../JobSearch/jobSearch.styled';
 import type { IVacancies } from 'interfaces/api';
 
@@ -48,6 +49,8 @@ export const SelectedJobs = () => {
       />
     );
   };
+
+  if (!favoritesVacancy.length) return <NotFound />;
 
   return (
     <Main>

@@ -13,5 +13,9 @@ export interface ITheme {
     container: { width: string };
     header: { height: number };
   };
+  borders: {
+    controls: { borderRadius: number };
+    block: { borderRadius: number };
+  };
   cursor: string;
 }

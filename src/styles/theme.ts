@@ -16,5 +16,9 @@ export const theme: ITheme = {
     container: { width: '1fr minmax(auto, 1116px) 1fr' },
     header: { height: 84 },
   },
+  borders: {
+    controls: { borderRadius: 8 },
+    block: { borderRadius: 12 },
+  },
   cursor: 'pointer',
 };
