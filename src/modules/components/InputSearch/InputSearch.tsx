@@ -10,11 +10,11 @@ interface InputSearchProps {
 
 export const InputSearch = ({ searchRef, onSearch }: InputSearchProps) => (
   <Wrapper>
+    <Button onClick={onSearch}>Поиск</Button>
     <StyledInput
       ref={searchRef}
       placeholder="Введите название вакансии"
-      icon={<img src={searchIcon} />}
+      icon={<img src={searchIcon} style={{ paddingLeft: '10px' }} />}
     />
-    <Button onClick={onSearch}>Поиск</Button>
   </Wrapper>
 );

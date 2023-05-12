@@ -17,11 +17,14 @@ export const StyledInput = emotionStyled(TextInput)`
 		border: 1px solid ${colors.grey200};
 		font-weight: 400;
 		font-size: 14px;
-		line-height: 20px;
+		line-height: 21px;
 
 		&:hover {
 			border: 1px solid ${colors.blue500Main};
 		}
+	}
+	.mantine-g9emdi[data-with-icon] {
+    padding-left: 36px;
 	}
 `;
 
@@ -38,4 +41,9 @@ export const Button = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
+  z-index: 1000;
+
+  :hover ~ div div input {
+    border: 1px solid ${({ theme }) => theme.colors.backgroundPrimary};
+  }
 `;
