@@ -3,8 +3,10 @@ import emotionStyled from '@emotion/styled';
 import { NumberInput, Select } from '@mantine/core';
 
 import { colors } from 'constants/colors';
+import { resetIcon } from 'constants/images';
 
 export const Wrapper = styled.div`
+  position: relative;
   background: ${({ theme }) => theme.colors.backgroundBase};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borders.block.borderRadius}px;
@@ -93,4 +95,24 @@ export const StyledSelect = emotionStyled(Select)`
 			border: 1px solid ${colors.blue500Main};
 		}
 	}
+`;
+
+export const ResetBtn = styled.div`
+  position: absolute;
+  top: 23px;
+  right: 20px;
+  padding-right: 20px;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  cursor: ${({ theme }) => theme.cursor};
+
+  ::after {
+    position: absolute;
+    content: '';
+    background: url(${resetIcon}) no-repeat;
+    width: 16px;
+    height: 16px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+  }
 `;

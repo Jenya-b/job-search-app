@@ -9,6 +9,7 @@ import {
   NumInput,
   StyledSelect,
   ParamsWrapp,
+  ResetBtn,
 } from './Filters.styled';
 import type { ISelectFilter } from 'interfaces/filters';
 import type { CataloguesResponse } from 'interfaces/api';
@@ -22,6 +23,7 @@ interface FiltersProps {
   setMinSalary: Dispatch<React.SetStateAction<number | '' | undefined>>;
   maxSalary: number | '' | undefined;
   setMaxSalary: Dispatch<React.SetStateAction<number | '' | undefined>>;
+  resetFilters: () => void;
 }
 
 export const Filters = ({
@@ -33,6 +35,7 @@ export const Filters = ({
   setMinSalary,
   maxSalary,
   setMaxSalary,
+  resetFilters,
 }: FiltersProps) => {
   const [dataSelect, setDataSelect] = useState<ISelectFilter[]>([]);
 
@@ -65,6 +68,7 @@ export const Filters = ({
           </ParamsWrapp>
           <Button>Применить</Button>
         </Form>
+        <ResetBtn onClick={resetFilters}>Сбросить все</ResetBtn>
       </Wrapper>
     </div>
   );

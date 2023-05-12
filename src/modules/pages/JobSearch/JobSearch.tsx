@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState, useRef } from 'react';
+import { FormEvent, useEffect, useState, ChangeEvent } from 'react';
 
 import { useGetCataloguesQuery, useLazyGetVacanciesQuery } from 'services';
 import { Main } from 'styles/components';
@@ -20,15 +20,16 @@ export const JobSearch = () => {
   const [maxSalary, setMaxSalary] = useState<number | ''>();
   const [activePage, setPage] = useState(1);
   const [searchValue, setSearchValue] = useState('');
-  const searchRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch();
   const { favoritesVacancy } = useAppSelector(vacancySelector);
   const [fetchGetVacancies, { data, isLoading, isFetching }] = useLazyGetVacanciesQuery();
   const { data: catalogues, isLoading: isLoadingCatalogues } = useGetCataloguesQuery(null);
 
+  useEffect(() => getVacancies(), [activePage]);
+
   useEffect(() => {
-    getVacancies();
-  }, [activePage, activeSelector, minSalary, maxSalary, searchValue]);
+    if (!(activeSelector || minSalary || maxSalary || searchValue)) getVacancies();
+  }, [activeSelector, maxSalary, minSalary, searchValue]);
 
   const getVacancies = () => {
     fetchGetVacancies({
@@ -68,9 +69,17 @@ export const JobSearch = () => {
     );
   };
 
-  const onSearch = () => {
-    if (!searchRef.current) return;
-    setSearchValue(searchRef.current.value);
+  const handleChangeSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSearchValue(value);
+  };
+
+  const resetFilters = () => {
+    setActiveSelector(null);
+    setMinSalary('');
+    setMaxSalary('');
+    setPage(1);
+    setSearchValue('');
   };
 
   return (
@@ -87,8 +96,9 @@ export const JobSearch = () => {
             maxSalary={maxSalary}
             setMinSalary={setMinSalary}
             setMaxSalary={setMaxSalary}
+            resetFilters={resetFilters}
           />
-          <InputSearch searchRef={searchRef} onSearch={onSearch} />
+          <InputSearch value={searchValue} onChange={handleChangeSearch} onClick={getVacancies} />
           <VacanciesList
             data={data}
             renderItem={renderItem}

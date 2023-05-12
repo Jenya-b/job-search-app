@@ -1,18 +1,20 @@
-import { MutableRefObject } from 'react';
+import { ChangeEvent } from 'react';
 
 import { searchIcon } from 'constants/images';
 import { StyledInput, Wrapper, Button } from './InputSearch.styled';
 
 interface InputSearchProps {
-  searchRef: MutableRefObject<HTMLInputElement | null>;
-  onSearch: () => void;
+  onClick: () => void;
+  value: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const InputSearch = ({ searchRef, onSearch }: InputSearchProps) => (
+export const InputSearch = ({ value, onChange, onClick }: InputSearchProps) => (
   <Wrapper>
-    <Button onClick={onSearch}>Поиск</Button>
+    <Button onClick={onClick}>Поиск</Button>
     <StyledInput
-      ref={searchRef}
+      value={value}
+      onChange={onChange}
       placeholder="Введите название вакансии"
       icon={<img src={searchIcon} style={{ paddingLeft: '10px' }} />}
     />
