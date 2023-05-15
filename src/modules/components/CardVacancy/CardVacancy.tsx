@@ -36,7 +36,7 @@ export const CardVacancy = ({
   isDescComponent,
 }: CardVacancyProps) => {
   return (
-    <Wrapper>
+    <Wrapper isDescComponent={isDescComponent}>
       <Title isDescComponent={isDescComponent} to={`${path.vacancy}/${id}`}>
         {title}
       </Title>

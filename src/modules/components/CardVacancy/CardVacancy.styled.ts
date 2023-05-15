@@ -8,11 +8,11 @@ interface StyledProps {
   isDescComponent: boolean;
 }
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<StyledProps>`
   position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  row-gap: ${({ isDescComponent }) => (isDescComponent ? 22.5 : 12)}px;
 `;
 
 export const Title = styled(NavLink)<StyledProps>`
