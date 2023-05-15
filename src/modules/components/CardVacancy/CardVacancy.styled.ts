@@ -1,6 +1,12 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 import { mapIcon, starActiveIcon, starIcon } from 'constants/images';
+import { colors } from 'constants/colors';
+
+interface StyledProps {
+  isDescComponent: boolean;
+}
 
 export const Wrapper = styled.div`
   position: relative;
@@ -9,11 +15,12 @@ export const Wrapper = styled.div`
   row-gap: 12px;
 `;
 
-export const Title = styled.h2`
-  font-weight: 600;
-  font-size: 20px;
+export const Title = styled(NavLink)<StyledProps>`
+  padding-right: 25px;
+  font-weight: ${({ isDescComponent }) => (isDescComponent ? 700 : 600)};
+  font-size: ${({ isDescComponent }) => (isDescComponent ? 28 : 20)}px;
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.textPrimary};
+  color: ${({ isDescComponent }) => (isDescComponent ? colors.black : colors.blue500Main)};
   cursor: ${({ theme }) => theme.cursor};
 `;
 
@@ -23,9 +30,9 @@ export const Descriptions = styled.div`
   column-gap: 33px;
 `;
 
-export const Payment = styled.p`
-  font-weight: 600;
-  font-size: 16px;
+export const Payment = styled.p<StyledProps>`
+  font-weight: ${({ isDescComponent }) => (isDescComponent ? 700 : 600)};
+  font-size: ${({ isDescComponent }) => (isDescComponent ? 20 : 16)}px;
   line-height: 20px;
   position: relative;
 
@@ -42,9 +49,9 @@ export const Payment = styled.p`
   }
 `;
 
-export const TypeWork = styled.p`
+export const TypeWork = styled.p<StyledProps>`
   font-weight: 400;
-  font-size: 16px;
+  font-size: ${({ isDescComponent }) => (isDescComponent ? 20 : 16)}px;
   line-height: 20px;
 `;
 

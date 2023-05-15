@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { colors } from 'constants/colors';
+import { fragmentCardBlock } from 'styles/fragments';
 
 export const Container = styled.div`
   grid-column: 2/3;
@@ -19,9 +19,6 @@ export const listStyles = css`
   row-gap: 16px;
 
   li {
-    background: ${colors.white};
-    padding: 24px;
-    border: 1px solid ${colors.grey200};
-    border-radius: 12px;
+    ${fragmentCardBlock}
   }
 `;

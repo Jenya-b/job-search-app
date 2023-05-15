@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
 import { RootState } from 'store';
 import { countObjectsOnPage } from 'constants/pagination';
-import type { CataloguesResponse, VacanciesResponse } from 'interfaces/api';
+import type { CataloguesResponse, IVacancies, VacanciesResponse } from 'interfaces/api';
 
 export const vacanciesApi = createApi({
   reducerPath: 'vacanciesApi',
@@ -44,7 +44,7 @@ export const vacanciesApi = createApi({
         },
       }),
     }),
-    getOneVacancy: builder.query<null, string>({
+    getOneVacancy: builder.query<IVacancies, string>({
       query: (id) => ({
         url: `/2.0/vacancies/${id}`,
         headers: {

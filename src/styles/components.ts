@@ -5,3 +5,10 @@ export const Main = styled.main`
   display: grid;
   grid-template: 1fr / ${({ theme }) => theme.size.container.width};
 `;
+
+export const Container = styled.div`
+  grid-column: 2/3;
+  justify-self: center;
+  max-width: 773px;
+  width: 100%;
+`;

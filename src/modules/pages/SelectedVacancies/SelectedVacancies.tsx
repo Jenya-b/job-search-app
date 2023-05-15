@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Main } from 'styles/components';
-import { Container } from './SelectedVacancies.styled';
+import { Main, Container } from 'styles/components';
 import { useAppDispatch, useAppSelector } from 'store';
 import { vacancySelector } from 'store/selectors';
 import { List } from 'modules/components/List/List';
@@ -44,8 +43,10 @@ export const SelectedJobs = () => {
         address={props.town.title}
         type={props.type_of_work.title}
         currency={props.currency}
+        id={props.id}
         addFavorites={addFavorites}
         isFavorite={true}
+        isDescComponent={false}
       />
     );
   };

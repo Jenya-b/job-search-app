@@ -8,6 +8,7 @@ import {
   TypeWork,
   Star,
 } from './CardVacancy.styled';
+import { path } from 'modules/router/path';
 
 interface CardVacancyProps {
   title: string;
@@ -16,8 +17,10 @@ interface CardVacancyProps {
   type: string;
   address: string;
   currency: string;
+  id: number;
   addFavorites: () => void;
   isFavorite: boolean;
+  isDescComponent: boolean;
 }
 
 export const CardVacancy = ({
@@ -27,15 +30,21 @@ export const CardVacancy = ({
   type,
   address,
   currency,
+  id,
   addFavorites,
   isFavorite,
+  isDescComponent,
 }: CardVacancyProps) => {
   return (
     <Wrapper>
-      <Title>{title}</Title>
+      <Title isDescComponent={isDescComponent} to={`${path.vacancy}/${id}`}>
+        {title}
+      </Title>
       <Descriptions>
-        <Payment>{getPayments(paymentFrom, paymentTo, currency)}</Payment>
-        <TypeWork>{type}</TypeWork>
+        <Payment isDescComponent={isDescComponent}>
+          {getPayments(paymentFrom, paymentTo, currency)}
+        </Payment>
+        <TypeWork isDescComponent={isDescComponent}>{type}</TypeWork>
       </Descriptions>
       <InfoAddress>{address}</InfoAddress>
       <Star isFavorite={isFavorite} onClick={addFavorites} />

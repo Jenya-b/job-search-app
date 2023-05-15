@@ -3,4 +3,5 @@ import { vacanciesApi } from './api/vacanciesApi';
 
 export const { useGetTokenQuery } = authApi;
 
-export const { useLazyGetVacanciesQuery, useGetCataloguesQuery } = vacanciesApi;
+export const { useLazyGetVacanciesQuery, useGetCataloguesQuery, useGetOneVacancyQuery } =
+  vacanciesApi;

@@ -27,6 +27,7 @@ export interface IVacancies {
   payment_from: number;
   currency: string;
   id: number;
+  vacancyRichText: string;
 }
 
 export interface VacanciesResponse {

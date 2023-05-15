@@ -63,8 +63,10 @@ export const JobSearch = () => {
         address={props.town.title}
         type={props.type_of_work.title}
         currency={props.currency}
+        id={props.id}
         addFavorites={addFavorites}
         isFavorite={isFavorite}
+        isDescComponent={false}
       />
     );
   };
