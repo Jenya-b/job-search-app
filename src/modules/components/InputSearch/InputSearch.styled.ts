@@ -41,7 +41,7 @@ export const Button = styled.button`
   font-weight: 500;
   font-size: 14px;
   line-height: 21px;
-  z-index: 1000;
+  z-index: 10;
 
   :hover ~ div div input {
     border: 1px solid ${({ theme }) => theme.colors.backgroundPrimary};

@@ -3,7 +3,7 @@ import emotionStyled from '@emotion/styled';
 import { NumberInput, Select } from '@mantine/core';
 
 import { colors } from 'constants/colors';
-import { resetIcon } from 'constants/images';
+import { controlsIcon } from 'constants/images';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -70,10 +70,39 @@ export const NumInput = emotionStyled(NumberInput)`
 
 	button {
 		border: none;
+		right: 7px;
 
 		&:hover {
 			background: none;
 		}
+
+		svg {
+			display: none;
+		}
+
+		&:first-child {
+			::after {
+				position: absolute;
+				content: '';
+				width: 10px;
+				height: 6px;
+				background: url(${controlsIcon.inputNum}) no-repeat;
+				margin-top: 4px;
+			}
+		}
+
+		&:last-child {
+			::after {
+				position: absolute;
+				content: '';
+				width: 10px;
+				height: 6px;
+				background: url(${controlsIcon.inputNum}) no-repeat;
+				transform: rotate(180deg);
+				margin-bottom: 6px;
+			}
+		}
+		
 	}
 
 	.mantine-x0i9fi:not(:disabled):hover,
@@ -95,6 +124,21 @@ export const StyledSelect = emotionStyled(Select)`
 			border: 1px solid ${colors.blue500Main};
 		}
 	}
+
+	.mantine-Select-rightSection {
+		svg {
+			display: none;
+		}
+		
+		::after {
+			position: absolute;
+			right: 15px;
+    	content: '';
+			width: 17px;
+			height: 9px;
+			background: url(${controlsIcon.select}) no-repeat;
+		}
+	}
 `;
 
 export const ResetBtn = styled.div`
@@ -107,8 +151,10 @@ export const ResetBtn = styled.div`
 
   ::after {
     position: absolute;
+    top: 0px;
+    right: 0;
     content: '';
-    background: url(${resetIcon}) no-repeat;
+    background: url(${controlsIcon.reset}) no-repeat;
     width: 16px;
     height: 16px;
     font-weight: 500;
