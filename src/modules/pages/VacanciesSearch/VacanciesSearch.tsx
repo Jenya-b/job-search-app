@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState, ChangeEvent } from 'react';
 
 import { useGetCataloguesQuery, useLazyGetVacanciesQuery } from 'services';
 import { Main } from 'styles/components';
-import { Container, listStyles } from './jobSearch.styled';
+import { Container, listStyles } from './VacanciesSearch.styled';
 import { Loader } from 'modules/components/Loader/Loader';
 import { Filters } from 'modules/components/Filters/Filters';
 import { CardVacancy } from 'modules/components/CardVacancy/CardVacancy';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Main } from 'styles/components';
-import { Container } from './SelectedJobs.styled';
+import { Container } from './SelectedVacancies.styled';
 import { useAppDispatch, useAppSelector } from 'store';
 import { vacancySelector } from 'store/selectors';
 import { List } from 'modules/components/List/List';
@@ -10,7 +10,7 @@ import { countObjectsOnPage } from 'constants/pagination';
 import { updateFavoritesVacancy } from 'store/reducers/vacancySlice';
 import { CardVacancy } from 'modules/components/CardVacancy/CardVacancy';
 import { NotFound } from 'modules/components/NotFound/NotFound';
-import { listStyles } from '../JobSearch/jobSearch.styled';
+import { listStyles } from '../VacanciesSearch/VacanciesSearch.styled';
 import type { IVacancies } from 'interfaces/api';
 
 export const SelectedJobs = () => {

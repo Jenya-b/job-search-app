@@ -1,5 +1,5 @@
 export const path = {
   home: '/',
-  selectedJobs: '/selected-jobs',
+  selectedVacancies: '/selected-jobs',
   signin: '/signin',
 };

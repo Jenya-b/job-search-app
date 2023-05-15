@@ -44,6 +44,15 @@ export const vacanciesApi = createApi({
         },
       }),
     }),
+    getOneVacancy: builder.query<null, string>({
+      query: (id) => ({
+        url: `/2.0/vacancies/${id}`,
+        headers: {
+          'X-Api-App-Id': process.env.REACT_APP_CLIENT_SECRET,
+          'x-secret-key': process.env.REACT_APP_X_SECRET_KEY,
+        },
+      }),
+    }),
     getCatalogues: builder.query<CataloguesResponse[], null>({
       query: () => ({
         url: '/2.0/catalogues',
