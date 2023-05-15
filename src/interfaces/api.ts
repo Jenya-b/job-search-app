@@ -33,8 +33,8 @@ export interface VacanciesResponse {
   more: true;
   objects: IVacancies[];
   subscription_active: false;
-  subscription_id: 0;
-  total: 341934;
+  subscription_id: number;
+  total: number;
 }
 
 export interface CataloguesResponse {

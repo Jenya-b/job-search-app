@@ -3,6 +3,8 @@ import type { FlattenSimpleInterpolation } from 'styled-components';
 import { List } from '../List/List';
 import { Pagination } from '../Pagination/Pagination';
 import type { IVacancies, VacanciesResponse } from 'interfaces/api';
+import { maxDataTotal } from 'constants/pagination';
+import { getTotalPages } from 'utils/pagination';
 
 interface VacanciesListProps {
   data: VacanciesResponse | undefined;
@@ -42,7 +44,7 @@ export const VacanciesList = ({
         styles={listStyles}
       />
       <Pagination
-        total={Math.ceil(data.total / countObjectsOnPage)}
+        total={getTotalPages(data.total, maxDataTotal, countObjectsOnPage)}
         value={activePage}
         onChange={setPage}
       />
