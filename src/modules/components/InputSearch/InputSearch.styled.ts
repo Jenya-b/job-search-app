@@ -3,11 +3,16 @@ import { TextInput } from '@mantine/core';
 import styled from 'styled-components';
 
 import { colors } from 'constants/colors';
+import { theme } from 'styles/theme';
 
 export const Wrapper = styled.div`
   position: relative;
   height: 48px;
   margin-bottom: 16px;
+
+  @media (${({ theme }) => theme.media.medium}) {
+    margin-bottom: 0px;
+  }
 `;
 
 export const StyledInput = emotionStyled(TextInput)`
@@ -25,6 +30,10 @@ export const StyledInput = emotionStyled(TextInput)`
 	}
 	.mantine-g9emdi[data-with-icon] {
     padding-left: 36px;
+
+		@media (${theme.media.medium}) {
+			padding-left: 30px;
+		}
 	}
 `;
 
@@ -42,6 +51,11 @@ export const Button = styled.button`
   font-size: 14px;
   line-height: 21px;
   z-index: ${({ theme }) => theme.order.lastIndex};
+
+  @media (${({ theme }) => theme.media.medium}) {
+    width: 70px;
+    height: 32px;
+  }
 
   :hover ~ div div input {
     border: 1px solid ${({ theme }) => theme.colors.backgroundPrimary};

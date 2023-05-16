@@ -14,6 +14,10 @@ export const Wrapper = styled.div`
       line-height: 20px;
       margin-top: 20px;
 
+      @media (${({ theme }) => theme.media.small}) {
+        font-size: 16px;
+      }
+
       &:first-child {
         margin-top: 0;
       }
@@ -24,6 +28,10 @@ export const Wrapper = styled.div`
       font-weight: 400;
       font-size: 16px;
       line-height: 140%;
+
+      @media (${({ theme }) => theme.media.small}) {
+        font-size: 14px;
+      }
 
       li {
         list-style: disc;

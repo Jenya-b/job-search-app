@@ -23,12 +23,23 @@ export const Title = styled(NavLink)<StyledProps>`
   line-height: 24px;
   color: ${({ isDescComponent }) => (isDescComponent ? colors.black : colors.blue500Main)};
   cursor: ${({ theme }) => theme.cursor};
+
+  @media (${({ theme }) => theme.media.small}) {
+    font-size: 18px;
+  }
 `;
 
 export const Descriptions = styled.div`
   display: flex;
   align-items: center;
   column-gap: 33px;
+
+  @media (${({ theme }) => theme.media.small}) {
+    flex-direction: column;
+    align-items: start;
+    column-gap: 0;
+    row-gap: 5px;
+  }
 `;
 
 export const Payment = styled.p<StyledProps>`
@@ -36,6 +47,10 @@ export const Payment = styled.p<StyledProps>`
   font-size: ${({ isDescComponent }) => (isDescComponent ? 20 : 16)}px;
   line-height: 20px;
   position: relative;
+
+  @media (${({ theme }) => theme.media.small}) {
+    font-size: 14px;
+  }
 
   &::after {
     content: '';
@@ -47,6 +62,10 @@ export const Payment = styled.p<StyledProps>`
     top: 50%;
     transform: translateY(-50%);
     right: -18px;
+
+    @media (${({ theme }) => theme.media.small}) {
+      display: none;
+    }
   }
 `;
 
@@ -54,6 +73,10 @@ export const TypeWork = styled.p<StyledProps>`
   font-weight: 400;
   font-size: ${({ isDescComponent }) => (isDescComponent ? 20 : 16)}px;
   line-height: 20px;
+
+  @media (${({ theme }) => theme.media.small}) {
+    font-size: 14px;
+  }
 `;
 
 export const InfoAddress = styled.div`
@@ -62,6 +85,11 @@ export const InfoAddress = styled.div`
   font-size: 16px;
   line-height: 19px;
   padding-left: 28px;
+
+  @media (${({ theme }) => theme.media.small}) {
+    font-size: 14px;
+    padding-left: 25px;
+  }
 
   &::before {
     content: '';
