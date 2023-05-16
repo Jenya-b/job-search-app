@@ -105,7 +105,7 @@ interface StarProps {
   isFavorite: boolean;
 }
 
-export const Star = styled.div<StarProps>`
+export const Star = styled.button<StarProps>`
   position: absolute;
   top: 0;
   right: 0;
