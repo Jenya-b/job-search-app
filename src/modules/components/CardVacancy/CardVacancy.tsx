@@ -36,7 +36,7 @@ export const CardVacancy = ({
   isDescComponent,
 }: CardVacancyProps) => {
   return (
-    <Wrapper isDescComponent={isDescComponent}>
+    <Wrapper isDescComponent={isDescComponent} data-elem={`vacancy-${id}`}>
       <Title isDescComponent={isDescComponent} to={`${path.vacancy}/${id}`}>
         {title}
       </Title>
@@ -47,7 +47,11 @@ export const CardVacancy = ({
         <TypeWork isDescComponent={isDescComponent}>{type}</TypeWork>
       </Descriptions>
       <InfoAddress>{address}</InfoAddress>
-      <Star isFavorite={isFavorite} onClick={addFavorites} />
+      <Star
+        isFavorite={isFavorite}
+        onClick={addFavorites}
+        data-elem={`vacancy-${id}-shortlist-button`}
+      />
     </Wrapper>
   );
 };

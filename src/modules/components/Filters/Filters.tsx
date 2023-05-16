@@ -59,14 +59,27 @@ export const Filters = ({
               value={activeSelector}
               onChange={setActiveSelector}
               data={dataSelect}
+              data-elem="industry-select"
             />
           </ParamsWrapp>
           <ParamsWrapp>
             <Subtitle>Оклад</Subtitle>
-            <NumInput placeholder="От" min={0} value={minSalary} onChange={setMinSalary} />
-            <NumInput placeholder="До" min={0} value={maxSalary} onChange={setMaxSalary} />
+            <NumInput
+              placeholder="От"
+              min={0}
+              value={minSalary}
+              onChange={setMinSalary}
+              data-elem="salary-from-input"
+            />
+            <NumInput
+              placeholder="До"
+              min={0}
+              value={maxSalary}
+              onChange={setMaxSalary}
+              data-elem="salary-to-input"
+            />
           </ParamsWrapp>
-          <Button>Применить</Button>
+          <Button data-elem="search-button">Применить</Button>
         </Form>
         <ResetBtn onClick={resetFilters}>Сбросить все</ResetBtn>
       </Wrapper>
