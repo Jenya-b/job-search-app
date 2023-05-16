@@ -17,6 +17,7 @@ import { authApi } from 'services/api/authApi';
 import { vacanciesApi } from 'services/api/vacanciesApi';
 import authReducer from 'store/reducers/authSlice';
 import vacancyReducer from 'store/reducers/vacancySlice';
+import menuReducer from './reducers/menuSlice';
 
 const persistConfig = {
   key: 'root',
@@ -35,6 +36,7 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [vacanciesApi.reducerPath]: vacanciesApi.reducer,
     persistedReducer,
+    menuReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

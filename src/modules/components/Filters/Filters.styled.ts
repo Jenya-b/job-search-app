@@ -7,6 +7,7 @@ import { controlsIcon } from 'constants/images';
 
 export const Wrapper = styled.div`
   position: relative;
+  z-index: ${({ theme }) => theme.order.lastIndex};
   background: ${({ theme }) => theme.colors.backgroundBase};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.borders.block.borderRadius}px;

@@ -13,6 +13,7 @@ export const Wrapper = styled.div<StyledProps>`
   display: flex;
   flex-direction: column;
   row-gap: ${({ isDescComponent }) => (isDescComponent ? 22.5 : 12)}px;
+  z-index: ${({ theme }) => theme.order.lastIndex};
 `;
 
 export const Title = styled(NavLink)<StyledProps>`
