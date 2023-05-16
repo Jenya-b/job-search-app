@@ -80,7 +80,7 @@ export const NumInput = emotionStyled(NumberInput)`
 			display: none;
 		}
 
-		&:first-child {
+		&:first-of-type {
 			::after {
 				position: absolute;
 				content: '';
