@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 
 import { mapIcon, starActiveIcon, starIcon } from 'constants/images';
 import { colors } from 'constants/colors';
+import { theme } from 'styles/theme';
 
 interface StyledProps {
   isDescComponent: boolean;
@@ -16,13 +16,14 @@ export const Wrapper = styled.div<StyledProps>`
   z-index: ${({ theme }) => theme.order.lastIndex};
 `;
 
-export const Title = styled(NavLink)<StyledProps>`
+export const Title = styled.h2<StyledProps>`
   padding-right: 25px;
   font-weight: ${({ isDescComponent }) => (isDescComponent ? 700 : 600)};
   font-size: ${({ isDescComponent }) => (isDescComponent ? 28 : 20)}px;
   line-height: 24px;
-  color: ${({ isDescComponent }) => (isDescComponent ? colors.black : colors.blue500Main)};
-  cursor: ${({ theme }) => theme.cursor};
+  color: ${({ isDescComponent }) =>
+    isDescComponent ? theme.colors.textBase : theme.colors.textPrimary};
+  cursor: ${({ isDescComponent }) => (isDescComponent ? 'auto' : theme.cursor)};
 
   @media (${({ theme }) => theme.media.small}) {
     font-size: 18px;

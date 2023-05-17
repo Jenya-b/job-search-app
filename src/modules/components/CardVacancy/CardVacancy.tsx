@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import { getPayments } from 'utils/payments';
 import {
   Wrapper,
@@ -34,24 +36,22 @@ export const CardVacancy = ({
   addFavorites,
   isFavorite,
   isDescComponent,
-}: CardVacancyProps) => {
-  return (
-    <Wrapper isDescComponent={isDescComponent} data-elem={`vacancy-${id}`}>
-      <Title isDescComponent={isDescComponent} to={`${path.vacancy}/${id}`}>
-        {title}
-      </Title>
-      <Descriptions>
-        <Payment isDescComponent={isDescComponent}>
-          {getPayments(paymentFrom, paymentTo, currency)}
-        </Payment>
-        <TypeWork isDescComponent={isDescComponent}>{type}</TypeWork>
-      </Descriptions>
-      <InfoAddress>{address}</InfoAddress>
-      <Star
-        isFavorite={isFavorite}
-        onClick={addFavorites}
-        data-elem={`vacancy-${id}-shortlist-button`}
-      />
-    </Wrapper>
-  );
-};
+}: CardVacancyProps) => (
+  <Wrapper isDescComponent={isDescComponent} data-elem={`vacancy-${id}`}>
+    <NavLink to={`${path.vacancy}/${id}`}>
+      <Title isDescComponent={isDescComponent}>{title}</Title>
+    </NavLink>
+    <Descriptions>
+      <Payment isDescComponent={isDescComponent}>
+        {getPayments(paymentFrom, paymentTo, currency)}
+      </Payment>
+      <TypeWork isDescComponent={isDescComponent}>{type}</TypeWork>
+    </Descriptions>
+    <InfoAddress>{address}</InfoAddress>
+    <Star
+      isFavorite={isFavorite}
+      onClick={addFavorites}
+      data-elem={`vacancy-${id}-shortlist-button`}
+    />
+  </Wrapper>
+);
