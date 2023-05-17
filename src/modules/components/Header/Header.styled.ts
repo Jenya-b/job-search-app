@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { fontStylesRegular } from 'styles/typography';
 import { colors } from 'constants/colors';
 import { theme } from 'styles/theme';
 
@@ -130,7 +129,9 @@ export const listStyles = css`
   }
 
   a {
-    ${fontStylesRegular}
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
     color: ${colors.black};
 
     &.active {
