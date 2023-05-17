@@ -1,7 +1,4 @@
-import styled, { css } from 'styled-components';
-
-import { fragmentCardBlock } from 'styles/fragments';
-import { theme } from 'styles/theme';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   grid-column: 2/3;
@@ -22,19 +19,5 @@ export const Container = styled.div`
 
   div:first-child {
     grid-row: 1/3;
-  }
-`;
-
-export const listStyles = css`
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-
-  @media (${theme.media.medium}) {
-    row-gap: 10px;
-  }
-
-  li {
-    ${fragmentCardBlock}
   }
 `;

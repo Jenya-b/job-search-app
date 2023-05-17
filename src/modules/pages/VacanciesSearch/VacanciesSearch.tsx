@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState, ChangeEvent } from 'react';
 
 import { useGetCataloguesQuery, useLazyGetVacanciesQuery } from 'services';
 import { Main } from 'styles/components';
-import { Container, listStyles } from './VacanciesSearch.styled';
+import { Container } from './VacanciesSearch.styled';
 import { Loader } from 'modules/components/Loader/Loader';
 import { Filters } from 'modules/components/Filters/Filters';
 import { CardVacancy } from 'modules/components/CardVacancy/CardVacancy';
@@ -12,6 +12,8 @@ import { vacancySelector } from 'store/selectors';
 import { updateFavoritesVacancy } from 'store/reducers/vacancySlice';
 import { VacanciesList } from 'modules/components/VacanciesList/VacanciesList';
 import { InputSearch } from 'modules/components/InputSearch/InputSearch';
+import { NotFound } from 'modules/components/NotFound/NotFound';
+import { listStylesBlockCards } from 'styles/fragments';
 import type { IVacancies } from 'interfaces/api';
 
 export const JobSearch = () => {
@@ -104,11 +106,11 @@ export const JobSearch = () => {
           <VacanciesList
             data={data}
             renderItem={renderItem}
-            renderEmpty={<></>}
+            renderEmpty={<NotFound />}
             countObjectsOnPage={countObjectsOnPage}
             activePage={activePage}
             setPage={setPage}
-            listStyles={listStyles}
+            listStyles={listStylesBlockCards}
           />
         </Container>
       </Main>
