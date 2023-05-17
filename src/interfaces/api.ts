@@ -38,6 +38,14 @@ export interface VacanciesResponse {
   total: number;
 }
 
+export interface VacanciesRequest {
+  page: number;
+  catalogues: string | null;
+  payment_from: number | '' | undefined;
+  payment_to: number | '' | undefined;
+  keyword: string;
+}
+
 export interface CataloguesResponse {
   title_rus: string;
   key: number;
