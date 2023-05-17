@@ -9,7 +9,7 @@ import { countObjectsOnPage } from 'constants/pagination';
 import { updateFavoritesVacancy } from 'store/reducers/vacancySlice';
 import { CardVacancy } from 'modules/components/CardVacancy/CardVacancy';
 import { NotFound } from 'modules/components/NotFound/NotFound';
-import { listStyles } from '../VacanciesSearch/VacanciesSearch.styled';
+import { listStylesBlockCards } from 'styles/fragments';
 import type { IVacancies } from 'interfaces/api';
 
 export const SelectedJobs = () => {
@@ -59,8 +59,8 @@ export const SelectedJobs = () => {
         <List
           data={selectedVacancy}
           renderItem={renderItem}
-          renderEmpty={<></>}
-          styles={listStyles}
+          renderEmpty={<NotFound />}
+          styles={listStylesBlockCards}
         />
         <Pagination
           total={Math.ceil(totalVacancy / countObjectsOnPage)}

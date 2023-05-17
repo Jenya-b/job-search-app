@@ -2,7 +2,6 @@ import emotionStyled from '@emotion/styled';
 import { TextInput } from '@mantine/core';
 import styled from 'styled-components';
 
-import { colors } from 'constants/colors';
 import { theme } from 'styles/theme';
 
 export const Wrapper = styled.div`
@@ -19,13 +18,13 @@ export const StyledInput = emotionStyled(TextInput)`
 	input {
 		height: 48px;
 		border-radius: 8px;
-		border: 1px solid ${colors.grey200};
+		border: 1px solid ${theme.colors.border};
 		font-weight: 400;
 		font-size: 14px;
 		line-height: 21px;
 
 		&:hover {
-			border: 1px solid ${colors.blue500Main};
+			border: 1px solid ${theme.colors.backgroundPrimary};
 		}
 	}
 	.mantine-g9emdi[data-with-icon] {

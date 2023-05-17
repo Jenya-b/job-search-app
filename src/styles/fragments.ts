@@ -12,3 +12,17 @@ export const fragmentCardBlock = css`
     padding: 15px;
   }
 `;
+
+export const listStylesBlockCards = css`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  @media (${theme.media.medium}) {
+    row-gap: 10px;
+  }
+
+  li {
+    ${fragmentCardBlock}
+  }
+`;
