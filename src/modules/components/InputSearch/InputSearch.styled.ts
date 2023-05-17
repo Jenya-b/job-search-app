@@ -47,7 +47,7 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.colors.textTertiary};
   border-radius: ${({ theme }) => theme.borders.controls.borderRadius}px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 21px;
   z-index: ${({ theme }) => theme.order.lastIndex};
 

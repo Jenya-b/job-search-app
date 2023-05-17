@@ -63,6 +63,7 @@ export const NumInput = emotionStyled(NumberInput)`
 		font-size: 14px;
   	font-weight: 400;
   	line-height: 20px;
+		padding-bottom: 2px;
 
 		&:hover {
 			border: 1px solid ${colors.blue500Main};
@@ -118,8 +119,9 @@ export const StyledSelect = emotionStyled(Select)`
 		border-radius: 8px;
 		border: 1px solid ${colors.grey300};
 		font-weight: 400;
-		font-size: 14px;
+		font-size: 15px;
 		line-height: 20px;
+		padding-bottom: 2px;
 
 		&:hover {
 			border: 1px solid ${colors.blue500Main};
