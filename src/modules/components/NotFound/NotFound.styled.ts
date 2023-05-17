@@ -7,6 +7,15 @@ export const Wrapper = styled.div`
   align-items: center;
   padding-top: 120px;
   row-gap: 32px;
+
+  @media (${({ theme }) => theme.media.large}) {
+    padding-top: 0;
+    justify-content: center;
+  }
+
+  @media (${({ theme }) => theme.media.medium}) {
+    row-gap: 25px;
+  }
 `;
 
 export const ImageWrapp = styled.div`
@@ -21,6 +30,10 @@ export const Title = styled.h2`
   font-size: 24px;
   line-height: 29px;
   text-align: center;
+
+  @media (${({ theme }) => theme.media.medium}) {
+    font-size: 18px;
+  }
 `;
 
 export const Link = styled(NavLink)`
