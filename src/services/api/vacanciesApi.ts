@@ -37,6 +37,7 @@ export const vacanciesApi = createApi({
           count: countObjectsOnPage,
           page,
           keyword,
+          no_agreement: 1,
         },
       }),
     }),
