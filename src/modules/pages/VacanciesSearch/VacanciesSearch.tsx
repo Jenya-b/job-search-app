@@ -16,7 +16,7 @@ import { NotFound } from 'modules/components/NotFound/NotFound';
 import { listStylesBlockCards } from 'styles/fragments';
 import type { IVacancies } from 'interfaces/api';
 
-export const JobSearch = () => {
+export const VacanciesSearch = () => {
   const [activeSelector, setActiveSelector] = useState<string | null>(null);
   const [minSalary, setMinSalary] = useState<number | ''>();
   const [maxSalary, setMaxSalary] = useState<number | ''>();
@@ -28,10 +28,6 @@ export const JobSearch = () => {
   const { data: catalogues, isLoading: isLoadingCatalogues } = useGetCataloguesQuery(null);
 
   useEffect(() => getVacancies(), [activePage]);
-
-  useEffect(() => {
-    if (!(activeSelector || minSalary || maxSalary || searchValue)) getVacancies();
-  }, [activeSelector, maxSalary, minSalary, searchValue]);
 
   const getVacancies = () => {
     fetchGetVacancies({
@@ -84,6 +80,14 @@ export const JobSearch = () => {
     setMaxSalary('');
     setPage(1);
     setSearchValue('');
+
+    fetchGetVacancies({
+      page: 0,
+      catalogues: null,
+      payment_from: '',
+      payment_to: '',
+      keyword: '',
+    });
   };
 
   return (
@@ -118,4 +122,4 @@ export const JobSearch = () => {
   );
 };
 
-export default JobSearch;
+export default VacanciesSearch;
